@@ -284,13 +284,11 @@ impl<T: Ord + Clone> CombinationsWithReplacement<T> {
             if cur_position >= self.elements.len() - 1 {
                 continue;
             }
-            if index == length - 1 || cur_position < *self.positions.get(index + 1).unwrap() {
-                let next_position = cur_position + 1;
-                for i in index..length {
-                    *self.positions.get_mut(i).unwrap() = next_position;
-                }
-                return true;
+            let next_position = cur_position + 1;
+            for i in index..length {
+                *self.positions.get_mut(i).unwrap() = next_position;
             }
+            return true;
         }
         false
     }
